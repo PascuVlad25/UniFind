@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="nav_primary">
+        <ion-title>Asistent</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-chat">
+    <ion-list *ngFor="let mesaj of mesajeTrimise">
+        <div class="chat-bubble-container">
+            <div *ngIf="mesaj.expeditor == 'asistent'" class="chat-bubble stanga">
+                <p class="chat-text">{{mesaj.mesaj}}</p>
+            </div>
+
+            <div *ngIf="mesaj.expeditor == 'client'" class="chat-bubble dreapta">
+                <p class="chat-text">{{mesaj.mesaj}}</p>
+            </div>
+        </div>
+
+    </ion-list>
+    <button class="buton-chat" ion-button (click)="raspunde()">Raspunde</button>
+</ion-content>

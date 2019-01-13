@@ -1,0 +1,77 @@
+page-search {
+    @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,500,700');
+
+    .search-content {
+        background: url(../../assets/imgs/bg-search.png);
+        background-repeat: no-repeat;
+        background-size: 100% 55em;
+        background-attachment: fixed;
+    }
+
+    .search-container {
+        margin-top: -2em;
+        width: 100%;
+        height: auto;
+    }
+
+    .search-container ion-item {
+        width: 79%;
+        float: left;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .search-container button {
+        float: left;
+        width: 19%;
+    }
+
+    .tab {
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        margin-bottom: 2em;
+    }
+
+    .image-header {
+        width: 100%;
+    }
+
+    .main-title {
+        font-family: 'Fira Sans', sans-serif;
+        color: #202020;
+        font-weight: 700;
+        margin-left: 15px;
+    }
+
+    .sub-text {
+        font-family: 'Fira Sans', sans-serif;
+        color: #202020;
+        font-weight: 300;
+        margin-left: 15px;
+    }
+
+    .slider {
+        height: 12.5em;
+        margin-bottom: -2.5em;
+        padding-bottom: 1.5em;
+    }
+
+    .slide {
+        background-color: #ebebeb;
+        margin-left: 1em;
+        border-radius: 15px;
+        height: 90%;
+    }
+
+    .slide-container {
+        margin-left: 0;
+    }
+
+    .slide-text {
+        color: #202020;
+        font-size: 80%;
+        font-family: 'Fira Sans', sans-serif;
+        font-weight: 500;
+    }
+
+
+}

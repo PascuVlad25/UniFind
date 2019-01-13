@@ -1,0 +1,41 @@
+<ion-header style="background: transparent">
+    <ion-navbar transparent>
+    </ion-navbar>
+    <div class="search-container">
+        <ion-item>
+            <ion-input [(ngModel)]="searchInput" placeholder="Cauta Facultate" clearInput></ion-input>
+        </ion-item>
+        <button ion-button (click)="filterByName()">Cauta</button>
+    </div>
+
+
+</ion-header>
+
+
+<ion-content class="search-content" padding>
+
+
+
+
+    <ion-list>
+        <ion-card class="tab" *ngFor="let item of searchedItems" (click)="goTo(item)">
+
+            <img src="{{item.imagine}}" />
+            <ion-card-content>
+                <ion-card-title>
+                    {{item.nume}}
+                </ion-card-title>
+                <p>
+                    {{item.universitate}}
+                </p>
+                <p>
+                    {{item.oras}}
+                </p>
+            </ion-card-content>
+
+        </ion-card>
+
+
+    </ion-list>
+
+</ion-content>

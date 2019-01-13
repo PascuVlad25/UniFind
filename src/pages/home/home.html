@@ -1,0 +1,115 @@
+<!--
+<ion-header>
+    <ion-navbar>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
+</ion-header>
+-->
+
+
+<ion-content>
+    <!--
+    <ion-row>
+        
+
+        <ion-col col-9>
+
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="newNume" placeholder="New Faculty"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="newUniversitate" placeholder="New university"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="newOras" placeholder="New Town"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="newImagine" placeholder="New Image"></ion-input>
+
+            </ion-item>
+
+        </ion-col>
+
+        <ion-col>
+
+            <button ion-button (click)="addItem()">
+
+                Adauga
+
+            </button>
+
+        </ion-col>
+
+    </ion-row>
+-->
+    <div class="bg-top-container">
+        <div class="main-title-container">
+            <h2 class="main-title">Găsește facultatea cea <br> mai potrivită pentru tine</h2>
+            <p class="description">Scapă de grijile legate de viitor <br> Peste 100 de specializări din care poți alege</p>
+        </div>
+    </div>
+
+    <h2 class="side-title">Specializări populare</h2>
+
+    <ion-slides slidesPerView="3" class="slider">
+
+        <ion-slide (click)="goTo('Informatică')" class="slide color1">
+            <div class="slide-container">
+                <ion-icon class="icon" name="md-code"></ion-icon>
+                <h5 class="slide-text">Informatică</h5>
+            </div>
+        </ion-slide>
+
+        <ion-slide (click)="goTo('Medicină')" class="slide color2">
+            <div class="slide-container">
+                <ion-icon class="icon" name="md-medkit"></ion-icon>
+                <h5 class="slide-text">Medicină generală</h5>
+            </div>
+        </ion-slide>
+
+        <ion-slide (click)="goTo('Politehnică')" class="slide color3">
+            <div class="slide-container">
+                <ion-icon class="icon" name="ios-cog"></ion-icon>
+                <h6 class="slide-text">Automatică și calculatoare</h6>
+            </div>
+        </ion-slide>
+
+        <ion-slide (click)="goTo('Economi')" class="slide color4">
+            <div class="slide-container">
+                <ion-icon class="icon" name="ios-cash"></ion-icon>
+                <h5 class="slide-text">Științe Economice</h5>
+            </div>
+        </ion-slide>
+
+        <ion-slide (click)="goTo('Farmacie')" class="slide color5">
+            <div class="slide-container">
+                <ion-icon class="icon" name="ios-flask"></ion-icon>
+                <h5 class="slide-text">Farmacie</h5>
+            </div>
+        </ion-slide>
+
+        <ion-slide class="slide">
+
+        </ion-slide>
+
+    </ion-slides>
+
+    <h2 class="side-title">Asistent Facultăți</h2>
+
+    <div class="asistent-container">
+        <div class="asistent">
+
+            <div class="asistent-text">
+                <h2 class="main-title">Bună, sunt aici <br> pentru a te ajuta</h2>
+                <p class="description">Eu sunt asistentul tău ce-ți stă la dispoziție <br> și împreună vom alege facultatea potrivită!</p>
+            </div>
+            <button class="asistent-buton" ion-button (click)="openNavChatPage()"></button>
+        </div>
+
+    </div>
+
+
+
+
+
+</ion-content>

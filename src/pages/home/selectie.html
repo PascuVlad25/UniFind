@@ -1,0 +1,33 @@
+<ion-header style="background: transparent">
+    <ion-navbar transparent style="color:white">
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="selectie-content" padding>
+
+
+
+
+    <ion-list>
+        <ion-card class="tab" *ngFor="let item of facultatiSelectie">
+
+            <img src="{{item.imagine}}" />
+            <ion-card-content>
+                <ion-card-title>
+                    {{item.nume}}
+                </ion-card-title>
+                <p>
+                    {{item.universitate}}
+                </p>
+                <p>
+                    {{item.oras}}
+                </p>
+            </ion-card-content>
+
+        </ion-card>
+
+
+    </ion-list>
+
+</ion-content>
