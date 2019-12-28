@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
-import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+//import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
+//import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'; // FirebaseListObservable, 
 import { SelectiePage } from './selectie';
 
 @Component({
@@ -15,7 +15,7 @@ export class ChatPage {
     
     newInfo;
     
-    numeClient = "";
+    numeClient = "";  
     mesajeChat = [{expeditor: 'asistent', mesaj: "Salut!", intrebare: ''},
                   {expeditor: 'asistent', mesaj: "Eu sunt Popândăul și sunt aici să te ajut în alegerea facultății.", intrebare: ''},
                   {expeditor: 'asistent', mesaj: "Cum te numești?", intrebare: ''},
@@ -66,7 +66,6 @@ export class ChatPage {
                 {expeditor: 'asistent', mesaj: "Îți cunoști punctele tari și punctele slabe?", intrebare: ''},
                   
                  {expeditor: 'client', mesaj: "Muzicala", intrebare: 'intrapersonala'},
-                      //*********************************************
                      
                  {expeditor: 'asistent', mesaj: "Dacă auzi o melodie o dată, o poți reproduce cu ușurință?", intrebare: ''},
                   
@@ -173,7 +172,7 @@ export class ChatPage {
             this.mesajeChat[this.mesajCurent].mesaj = data.nume;
             this.mesajeChat[this.mesajCurent+1].mesaj = "Încântat de cunoștință, " + this.numeClient + ". Hai să ne cunoaștem mai bine."
             this.urmatoareaIntrebare();
-            console.log(this.numeClient);
+            this.informatiiStudent.nume= this.numeClient;
           }
         }
     ]
@@ -223,7 +222,7 @@ export class ChatPage {
         alert.addButton({
           text: 'Raspunde',
           handler: data => {
-              this.mesajeChat[this.mesajCurent].mesaj = data;
+              this.mesajeChat[this.mesajCurent].mesaj = data.join(', ');
                 this.urmatoareaIntrebare();
                 this.informatiiStudent[index] = data;
           }

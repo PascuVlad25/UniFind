@@ -1,28 +1,39 @@
 page-search {
     @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,500,700');
 
+    ion-header{
+        background: transparent;
+    }
+
     .search-content {
-        background: url(../../assets/imgs/bg-search.png);
+        background: url('../assets/imgs/bg-search.png');
         background-repeat: no-repeat;
         background-size: 100% 55em;
         background-attachment: fixed;
     }
 
     .search-container {
-        margin-top: -2em;
-        width: 100%;
+        margin-top: -2.5em;
+        margin-left: 5%;
+        width: 90%;
         height: auto;
     }
 
     .search-container ion-item {
         width: 79%;
         float: left;
-        border-radius: 10px 0 0 10px;
+        border-radius: 15px 0 0 15px;
+        box-shadow: 0 10px 10px rgba(127, 118, 136, 0.199);
     }
 
-    .search-container button {
+    .search-button {
         float: left;
+        margin: 0;
         width: 19%;
+        height: 3.3em;
+        background-color: rgb(142, 112, 212);
+        box-shadow: 0 10px 10px rgba(127, 118, 136, 0.199);
+        border-radius: 0 10px 10px 0;
     }
 
     .tab {
@@ -72,6 +83,5 @@ page-search {
         font-family: 'Fira Sans', sans-serif;
         font-weight: 500;
     }
-
 
 }

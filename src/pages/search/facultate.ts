@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'; // FirebaseListObservable, 
 
 @Component({
   selector: 'page-search',

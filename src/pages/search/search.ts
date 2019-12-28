@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'; // FirebaseListObservable
 import { FacultatePage } from './facultate';
 
 @Component({
@@ -11,10 +11,13 @@ import { FacultatePage } from './facultate';
 
 export class SearchPage {
     
-  facultyItems: FirebaseListObservable<any[]>;
+  //facultyItems: FirebaseListObservable<any[]>;
+  facultyItems: AngularFireList<any>;
   searchedItems;
   searchInput = "";
   searchParams = "";
+
+  maxPercent = 50;
 
   constructor(public navCtrl: NavController, public firebaseService: FirebaseServiceProvider, public params: NavParams) {
         this.searchParams = params.data.materie;
@@ -40,8 +43,10 @@ export class SearchPage {
       }
       
       let searchedSplit = searchedName.split(' ');
-      console.log(searchedSplit)
-      this.facultyItems.forEach(item => {
+      //console.log(searchedSplit)
+      
+      //this.facultyItems.forEach(item => {
+       this.facultyItems.valueChanges().forEach(item => {
         for(let i in item){
             let newName = item[i].nume;
             let newTown = item[i].oras;
@@ -51,20 +56,18 @@ export class SearchPage {
                 if(newName.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().
                    includes(searchedSplit[index].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())){
                 
-                console.log("Am gasit un match");
-                console.log(item[i]);
+                //console.log("Am gasit un match");
                 this.searchedItems.push(item[i]);
             }
                 else if (newTown.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
                          .includes(searchedSplit[index].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())){
                 
-                console.log("Am gasit un match");
-                console.log(item[i]);
                 this.searchedItems.push(item[i]);
             }
             }
         }
       });
+      
   }
     
     goTo(param){

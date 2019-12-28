@@ -6,12 +6,12 @@
 
 <ion-content class="bg-chat">
     <ion-list *ngFor="let mesaj of mesajeTrimise">
-        <div class="chat-bubble-container">
-            <div *ngIf="mesaj.expeditor == 'asistent'" class="chat-bubble stanga">
+        <div class="chat-bubble">
+            <div *ngIf="mesaj.expeditor == 'asistent'" class="chat-bubble-container stanga">
                 <p class="chat-text">{{mesaj.mesaj}}</p>
             </div>
 
-            <div *ngIf="mesaj.expeditor == 'client'" class="chat-bubble dreapta">
+            <div *ngIf="mesaj.expeditor == 'client'" class="chat-bubble-container dreapta">
                 <p class="chat-text">{{mesaj.mesaj}}</p>
             </div>
         </div>

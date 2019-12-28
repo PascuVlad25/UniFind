@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 /*
   Generated class for the FirebaseServiceProvider provider.
 
@@ -11,11 +10,11 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class FirebaseServiceProvider {
 
   constructor(public afd: AngularFireDatabase) {
-    console.log('Hello FirebaseServiceProvider Provider');
+     //console.log('Hello FirebaseServiceProvider Provider');
   }
 
-  getUniversityName(){
-      return this.afd.list('/Facultati');
+  getUniversityName(): AngularFireList<any>{
+      return this.afd.list<any>('/Facultati');
   }
 
   addItem(name, universitate, oras, imagine){

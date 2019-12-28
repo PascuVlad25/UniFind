@@ -1,13 +1,10 @@
-<ion-header style="background: transparent">
+<ion-header no-border style="background: transparent">
     <ion-navbar transparent style="color:white">
     </ion-navbar>
 </ion-header>
 
 
 <ion-content class="selectie-content" padding>
-
-
-
 
     <ion-list>
         <ion-card class="tab" *ngFor="let item of facultatiSelectie">
@@ -17,12 +14,21 @@
                 <ion-card-title>
                     {{item.nume}}
                 </ion-card-title>
-                <p>
-                    {{item.universitate}}
-                </p>
-                <p>
-                    {{item.oras}}
-                </p>
+                <div class="card-details">
+                        <div>
+                            <p>
+                                {{item.universitate}}
+                            </p>
+                            <p>
+                                {{item.oras}}
+                            </p>
+                        </div>
+                        <div class="percentage-container"
+                        [ngClass]="item.procent === maxPercentage? 'color3' : 'color1'">
+                            <h3>Potrivire: </h3>
+                            <h1>{{item.procent}}%</h1>
+                        </div>
+                    </div>
             </ion-card-content>
 
         </ion-card>
