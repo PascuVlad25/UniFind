@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 134:
+/***/ 148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facultate__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facultate__ = __webpack_require__(280);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -29,6 +29,7 @@ var SearchPage = /** @class */ (function () {
         this.params = params;
         this.searchInput = "";
         this.searchParams = "";
+        this.maxPercent = 50;
         this.searchParams = params.data.materie;
         if (this.searchParams)
             this.searchInput = this.searchParams;
@@ -48,22 +49,20 @@ var SearchPage = /** @class */ (function () {
             return;
         }
         var searchedSplit = searchedName.split(' ');
-        console.log(searchedSplit);
-        this.facultyItems.forEach(function (item) {
+        //console.log(searchedSplit)
+        //this.facultyItems.forEach(item => {
+        this.facultyItems.valueChanges().forEach(function (item) {
             for (var i in item) {
                 var newName = item[i].nume;
                 var newTown = item[i].oras;
                 for (var index in searchedSplit) {
                     if (newName.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().
                         includes(searchedSplit[index].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())) {
-                        console.log("Am gasit un match");
-                        console.log(item[i]);
+                        //console.log("Am gasit un match");
                         _this.searchedItems.push(item[i]);
                     }
                     else if (newTown.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
                         .includes(searchedSplit[index].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())) {
-                        console.log("Am gasit un match");
-                        console.log(item[i]);
                         _this.searchedItems.push(item[i]);
                     }
                 }
@@ -75,7 +74,7 @@ var SearchPage = /** @class */ (function () {
     };
     SearchPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-search',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\search\search.html"*/'<ion-header style="background: transparent">\n    <ion-navbar transparent>\n    </ion-navbar>\n    <div class="search-container">\n        <ion-item>\n            <ion-input [(ngModel)]="searchInput" placeholder="Cauta Facultate" clearInput></ion-input>\n        </ion-item>\n        <button ion-button (click)="filterByName()">Cauta</button>\n    </div>\n\n\n</ion-header>\n\n\n<ion-content class="search-content" padding>\n\n\n\n\n    <ion-list>\n        <ion-card class="tab" *ngFor="let item of searchedItems" (click)="goTo(item)">\n\n            <img src="{{item.imagine}}" />\n            <ion-card-content>\n                <ion-card-title>\n                    {{item.nume}}\n                </ion-card-title>\n                <p>\n                    {{item.universitate}}\n                </p>\n                <p>\n                    {{item.oras}}\n                </p>\n            </ion-card-content>\n\n        </ion-card>\n\n\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\search\search.html"*/
+            selector: 'page-search',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\search\search.html"*/'<ion-header no-border>\n    <ion-navbar transparent>\n    </ion-navbar>\n    <div class="search-container">\n        <ion-item>\n            <ion-input [(ngModel)]="searchInput" placeholder="Cauta Facultate" clearInput></ion-input>\n        </ion-item>\n        <button class="search-button" ion-button (click)="filterByName()">Cauta</button>\n    </div>\n\n\n</ion-header>\n\n\n<ion-content class="search-content" padding>\n\n\n\n\n    <ion-list>\n        <ion-card class="tab" *ngFor="let item of searchedItems" (click)="goTo(item)">\n\n            <img src="{{item.imagine}}" />\n            <ion-card-content>\n                <ion-card-title>\n                    {{item.nume}}\n                </ion-card-title>\n                    <p>\n                        {{item.universitate}}\n                    </p>\n                    <p>\n                        {{item.oras}}\n                    </p>\n            </ion-card-content>\n\n        </ion-card>\n\n\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\search\search.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], SearchPage);
@@ -86,7 +85,7 @@ var SearchPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 148:
+/***/ 183:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -99,11 +98,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 148;
+webpackEmptyAsyncContext.id = 183;
 
 /***/ }),
 
-/***/ 189:
+/***/ 224:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -116,19 +115,19 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 189;
+webpackEmptyAsyncContext.id = 224;
 
 /***/ }),
 
-/***/ 233:
+/***/ 268:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__search_search__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__search_search__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(282);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -149,7 +148,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_2__contact_contact__["a" /* ContactPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabTitle="Acasa" tabIcon="apps"></ion-tab>\n    <ion-tab [root]="tab2Root" tabTitle="Cauta" tabIcon="search"></ion-tab>\n    <ion-tab [root]="tab3Root" tabTitle="Favorite" tabIcon="star"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\tabs\tabs.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabTitle="Acasa" tabIcon="apps"></ion-tab>\n    <ion-tab [root]="tab2Root" tabTitle="Cauta" tabIcon="search"></ion-tab>\n    <ion-tab [root]="tab3Root" tabTitle="Favorite" tabIcon="star"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -160,14 +159,14 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 273:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacultatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -190,7 +189,7 @@ var FacultatePage = /** @class */ (function () {
     }
     FacultatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-search',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\search\facultate.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>{{facultate.nume}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <img class="image-header" src="{{facultate.imagine}}">\n\n    <h2 class="main-title">{{facultate.nume}}</h2>\n\n    <h6 class="sub-text">{{facultate.universitate}}, {{facultate.oras}}</h6>\n\n    <hr>\n\n\n\n    <ion-slides slidesPerView="2" class="slider">\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h5 class="slide-text">George Bura</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h5 class="slide-text">Cristina Dan</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h6 class="slide-text">Radu Meko</h6>\n\n                <p>Este o facultate super! Imi place aici</p>\n\n            </div>\n\n        </ion-slide>\n\n    </ion-slides>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\search\facultate.html"*/
+            selector: 'page-search',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\search\facultate.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>{{facultate.nume}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <img class="image-header" src="{{facultate.imagine}}">\n\n    <h2 class="main-title">{{facultate.nume}}</h2>\n\n    <h6 class="sub-text">{{facultate.universitate}}, {{facultate.oras}}</h6>\n\n    <hr>\n\n\n\n    <ion-slides slidesPerView="2" class="slider">\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h5 class="slide-text">George Bura</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h5 class="slide-text">Cristina Dan</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide class="slide">\n\n            <div class="slide-container">\n\n\n\n                <h6 class="slide-text">Radu Meko</h6>\n\n                <p>Este o facultate super! Imi place aici</p>\n\n            </div>\n\n        </ion-slide>\n\n    </ion-slides>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\search\facultate.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
     ], FacultatePage);
@@ -201,13 +200,13 @@ var FacultatePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 274:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -225,7 +224,7 @@ var ContactPage = /** @class */ (function () {
     }
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\contact\contact.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            Favorite\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\contact\contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\contact\contact.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>\n            Favorite\n        </ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\contact\contact.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], ContactPage);
@@ -236,16 +235,16 @@ var ContactPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 275:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chat__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_search__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chat__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_search__ = __webpack_require__(148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -264,8 +263,16 @@ var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, firebaseService) {
         this.navCtrl = navCtrl;
         this.firebaseService = firebaseService;
+        this.colorList = ['color1', 'color2', 'color3', 'color4', 'color5', 'main-color-theme'];
+        this.articole = [{ titlu: 'Facultatea în țară sau în afară?', descriere: 'Veșnica întrebare a studentului român. Uite câteva părți bune și părți rele legate de studiul în străinătate.', color: '' },
+            { titlu: 'Specializări căutate de care nu ai auzit', descriere: 'Câteva specializări mai puțin populare, dar care se caută mai apoi pe piața muncii.', color: '' },
+            { titlu: 'Ghidul studentului de anul întai', descriere: 'Câteva sfaturi și trick-uri care te vor ajuta în primul an de facultate.', color: '' }];
         this.universityItems = this.firebaseService.getUniversityName();
     }
+    HomePage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.articole.forEach(function (articol) { return articol.color = _this.getRandomColorClass(); });
+    };
     HomePage.prototype.addItem = function () {
         this.firebaseService.addItem(this.newNume, this.newUniversitate, this.newOras, this.newImagine);
     };
@@ -275,9 +282,12 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.goTo = function (page) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__search_search__["a" /* SearchPage */], { materie: page });
     };
+    HomePage.prototype.getRandomColorClass = function () {
+        return this.colorList[Math.floor(Math.random() * this.colorList.length)];
+    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\home.html"*/'<!--\n\n<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Home</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n-->\n\n\n\n\n\n<ion-content>\n\n    <!--\n\n    <ion-row>\n\n        \n\n\n\n        <ion-col col-9>\n\n\n\n            <ion-item>\n\n                <ion-input type="text" [(ngModel)]="newNume" placeholder="New Faculty"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-input type="text" [(ngModel)]="newUniversitate" placeholder="New university"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-input type="text" [(ngModel)]="newOras" placeholder="New Town"></ion-input>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-input type="text" [(ngModel)]="newImagine" placeholder="New Image"></ion-input>\n\n\n\n            </ion-item>\n\n\n\n        </ion-col>\n\n\n\n        <ion-col>\n\n\n\n            <button ion-button (click)="addItem()">\n\n\n\n                Adauga\n\n\n\n            </button>\n\n\n\n        </ion-col>\n\n\n\n    </ion-row>\n\n-->\n\n    <div class="bg-top-container">\n\n        <div class="main-title-container">\n\n            <h2 class="main-title">Găsește facultatea cea <br> mai potrivită pentru tine</h2>\n\n            <p class="description">Scapă de grijile legate de viitor <br> Peste 100 de specializări din care poți alege</p>\n\n        </div>\n\n    </div>\n\n\n\n    <h2 class="side-title">Specializări populare</h2>\n\n\n\n    <ion-slides slidesPerView="3" class="slider">\n\n\n\n        <ion-slide (click)="goTo(\'Informatică\')" class="slide color1">\n\n            <div class="slide-container">\n\n                <ion-icon class="icon" name="md-code"></ion-icon>\n\n                <h5 class="slide-text">Informatică</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide (click)="goTo(\'Medicină\')" class="slide color2">\n\n            <div class="slide-container">\n\n                <ion-icon class="icon" name="md-medkit"></ion-icon>\n\n                <h5 class="slide-text">Medicină generală</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide (click)="goTo(\'Politehnică\')" class="slide color3">\n\n            <div class="slide-container">\n\n                <ion-icon class="icon" name="ios-cog"></ion-icon>\n\n                <h6 class="slide-text">Automatică și calculatoare</h6>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide (click)="goTo(\'Economi\')" class="slide color4">\n\n            <div class="slide-container">\n\n                <ion-icon class="icon" name="ios-cash"></ion-icon>\n\n                <h5 class="slide-text">Științe Economice</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide (click)="goTo(\'Farmacie\')" class="slide color5">\n\n            <div class="slide-container">\n\n                <ion-icon class="icon" name="ios-flask"></ion-icon>\n\n                <h5 class="slide-text">Farmacie</h5>\n\n            </div>\n\n        </ion-slide>\n\n\n\n        <ion-slide class="slide">\n\n\n\n        </ion-slide>\n\n\n\n    </ion-slides>\n\n\n\n    <h2 class="side-title">Asistent Facultăți</h2>\n\n\n\n    <div class="asistent-container">\n\n        <div class="asistent">\n\n\n\n            <div class="asistent-text">\n\n                <h2 class="main-title">Bună, sunt aici <br> pentru a te ajuta</h2>\n\n                <p class="description">Eu sunt asistentul tău ce-ți stă la dispoziție <br> și împreună vom alege facultatea potrivită!</p>\n\n            </div>\n\n            <button class="asistent-buton" ion-button (click)="openNavChatPage()"></button>\n\n        </div>\n\n\n\n    </div>\n\n\n\n\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\home.html"*/'\n\n<ion-content>\n\n    <div class="bg-top-container">\n\n        <div class="main-title-container">\n\n            <h2 class="main-title">Găsește facultatea cea <br> mai potrivită pentru tine</h2>\n\n            <p class="description">Scapă de grijile legate de viitor <br> Peste 100 de specializări din care poți alege</p>\n\n        </div>\n\n    </div>\n\n\n\n    <div class="main-body">\n\n        <div class="body-section">\n\n            <h2 class="side-title">Asistent Facultăți</h2>\n\n\n\n            <div class="asistent-container">\n\n                <div class="asistent main-color-theme" (click)="openNavChatPage()">\n\n                    <div class="asistent-text">\n\n                        <h2 class="main-title">Află chiar acum <br> facultatea potrivită</h2>\n\n                        <p class="description">Descoperă cea mai bună alegere <br> <b>pentru tine</b> în doar 2 minute! </p>\n\n                        <!-- <h2 class="main-title">Bună, sunt aici <br> pentru a te ajuta</h2> -->\n\n                        <!-- <p class="description">Eu sunt asistentul tău ce-ți stă la dispoziție <br> și împreună vom alege facultatea potrivită!</p> -->\n\n                    </div>\n\n                    <ion-icon class="asistent-icon" name="ios-arrow-forward"></ion-icon>\n\n                </div>\n\n            </div>\n\n        </div>\n\n    \n\n        \n\n        <div class="body-section popular-faculties">\n\n            <h2 class="side-title">Specializări populare</h2>\n\n\n\n            <ion-slides slidesPerView="3" class="slider">\n\n                <ion-slide (click)="goTo(\'Informatică\')" class="slide color1">\n\n                    <div class="slide-container">\n\n                        <ion-icon class="icon" name="md-code"></ion-icon>\n\n                        <h5 class="slide-text">Informatică</h5>\n\n                    </div>\n\n                </ion-slide>\n\n\n\n                <ion-slide (click)="goTo(\'Medicină\')" class="slide color2">\n\n                    <div class="slide-container">\n\n                        <ion-icon class="icon" name="md-medkit"></ion-icon>\n\n                        <h5 class="slide-text">Medicină generală</h5>\n\n                    </div>\n\n                </ion-slide>\n\n\n\n                <ion-slide (click)="goTo(\'Politehnică\')" class="slide color3">\n\n                    <div class="slide-container">\n\n                        <ion-icon class="icon" name="ios-cog"></ion-icon>\n\n                        <h6 class="slide-text">Automatică și calculatoare</h6>\n\n                    </div>\n\n                </ion-slide>\n\n\n\n                <ion-slide (click)="goTo(\'Economi\')" class="slide color4">\n\n                    <div class="slide-container">\n\n                        <ion-icon class="icon" name="ios-cash"></ion-icon>\n\n                        <h5 class="slide-text">Științe Economice</h5>\n\n                    </div>\n\n                </ion-slide>\n\n\n\n                <ion-slide (click)="goTo(\'Farmacie\')" class="slide color5">\n\n                    <div class="slide-container">\n\n                        <ion-icon class="icon" name="ios-flask"></ion-icon>\n\n                        <h5 class="slide-text">Farmacie</h5>\n\n                    </div>\n\n                </ion-slide>\n\n\n\n                <ion-slide class="slide">\n\n\n\n                </ion-slide>\n\n\n\n            </ion-slides>\n\n        </div>\n\n\n\n        <div class="body-section">\n\n            <h2 class="side-title">Articole</h2>\n\n\n\n            <div class="asistent-container" *ngFor="let articol of articole">\n\n                <div class="asistent" [ngClass]="articol.color">\n\n                    <div class="asistent-text" >\n\n                        <h2 class="main-title">{{ articol.titlu }}</h2>\n\n                        <p class="description">{{ articol.descriere }}</p>\n\n                    </div>\n\n                </div>\n\n            </div>\n\n        </div>\n\n    </div>\n\n    \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
     ], HomePage);
@@ -288,14 +298,14 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectie__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selectie__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -307,6 +317,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+//import { FirebaseServiceProvider } from './../../providers/firebase-service/firebase-service';
+//import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'; // FirebaseListObservable, 
 
 var ChatPage = /** @class */ (function () {
     function ChatPage(alertCtrl, navCtrl) {
@@ -342,7 +354,6 @@ var ChatPage = /** @class */ (function () {
             { expeditor: 'client', mesaj: "Muzicala", intrebare: 'interpersonala' },
             { expeditor: 'asistent', mesaj: "Îți cunoști punctele tari și punctele slabe?", intrebare: '' },
             { expeditor: 'client', mesaj: "Muzicala", intrebare: 'intrapersonala' },
-            //*********************************************
             { expeditor: 'asistent', mesaj: "Dacă auzi o melodie o dată, o poți reproduce cu ușurință?", intrebare: '' },
             { expeditor: 'client', mesaj: "Muzicala", intrebare: 'muzicala' },
             { expeditor: 'asistent', mesaj: "Îți place să citești cărți?", intrebare: '' },
@@ -422,7 +433,7 @@ var ChatPage = /** @class */ (function () {
                         _this.mesajeChat[_this.mesajCurent].mesaj = data.nume;
                         _this.mesajeChat[_this.mesajCurent + 1].mesaj = "Încântat de cunoștință, " + _this.numeClient + ". Hai să ne cunoaștem mai bine.";
                         _this.urmatoareaIntrebare();
-                        console.log(_this.numeClient);
+                        _this.informatiiStudent.nume = _this.numeClient;
                     }
                 }
             ]
@@ -465,7 +476,7 @@ var ChatPage = /** @class */ (function () {
         alert.addButton({
             text: 'Raspunde',
             handler: function (data) {
-                _this.mesajeChat[_this.mesajCurent].mesaj = data;
+                _this.mesajeChat[_this.mesajCurent].mesaj = data.join(', ');
                 _this.urmatoareaIntrebare();
                 _this.informatiiStudent[index] = data;
             }
@@ -589,7 +600,7 @@ var ChatPage = /** @class */ (function () {
     };
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\chat.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>Asistent</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="bg-chat">\n\n    <ion-list *ngFor="let mesaj of mesajeTrimise">\n\n        <div class="chat-bubble-container">\n\n            <div *ngIf="mesaj.expeditor == \'asistent\'" class="chat-bubble stanga">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n\n\n            <div *ngIf="mesaj.expeditor == \'client\'" class="chat-bubble dreapta">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n        </div>\n\n\n\n    </ion-list>\n\n    <button class="buton-chat" ion-button (click)="raspunde()">Raspunde</button>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\chat.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>Asistent</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="bg-chat">\n\n    <ion-list *ngFor="let mesaj of mesajeTrimise">\n\n        <div class="chat-bubble">\n\n            <div *ngIf="mesaj.expeditor == \'asistent\'" class="chat-bubble-container stanga">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n\n\n            <div *ngIf="mesaj.expeditor == \'client\'" class="chat-bubble-container dreapta">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n        </div>\n\n\n\n    </ion-list>\n\n    <button class="buton-chat" ion-button (click)="raspunde()">Raspunde</button>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], ChatPage);
@@ -600,14 +611,14 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 277:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectiePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -626,10 +637,11 @@ var SelectiePage = /** @class */ (function () {
         this.navParams = navParams;
         this.firebaseService = firebaseService;
         this.facultatiSelectie = [];
+        this.maxPercentage = 100;
         this.universityItems = this.firebaseService.getUniversityName();
         this.listaValori = navParams.data.lista;
         //      this.filterByValori();
-        this.filterUniversity();
+        this.filterUniversity_v2();
     }
     SelectiePage.prototype.filterByValori = function () {
         var _this = this;
@@ -643,7 +655,7 @@ var SelectiePage = /** @class */ (function () {
             console.log("SearchName nu e definit!");
             return;
         }
-        this.universityItems.forEach(function (item) {
+        this.universityItems.valueChanges().forEach(function (item) {
             for (var i in item) {
                 var newName = item[i].nume;
                 if (newName.toLowerCase().includes(searchedName.toLowerCase())) {
@@ -656,7 +668,7 @@ var SelectiePage = /** @class */ (function () {
         var _this = this;
         //VALORILE USERULUI
         var newList; //VALORILE FACULTATII
-        this.universityItems.forEach(function (item) {
+        this.universityItems.valueChanges().forEach(function (item) {
             for (var i in item) {
                 var listString = item[i].list;
                 if (listString != undefined) {
@@ -699,9 +711,78 @@ var SelectiePage = /** @class */ (function () {
         }
         return newList;
     };
+    SelectiePage.prototype.potrivireValues = function (userList, newList) {
+        /*
+        Verifica daca valorile din userList
+        sunt mai mici decat cele ale facultatii
+        */
+        var procent = 100;
+        for (var i in userList) {
+            var diferenta = userList[i] - newList[i];
+            if (diferenta < 0)
+                procent += diferenta * 10;
+            // if(diferenta > 0)
+            //     procent -= diferenta;
+        }
+        return procent;
+    };
+    SelectiePage.prototype.filterUniversity_v2 = function () {
+        var _this = this;
+        //VALORILE USERULUI
+        var newList; //VALORILE FACULTATII
+        var newProcent; //Procentul de potrivire cu FACULTATEA
+        var newListProcente = [];
+        //        this.listaValori = [0,2,2,4,1,0,1,2,0];
+        this.universityItems.valueChanges().forEach(function (item) {
+            for (var i in item) {
+                var listString = item[i].list;
+                if (listString != undefined) {
+                    newList = _this.convertStringToInt(listString);
+                    newProcent = _this.potrivireValues(_this.listaValori, newList);
+                    item[i]["procent"] = newProcent;
+                    //                if(newListProcente == [])
+                    //                    newListProcente.push(item[i]);
+                    //                let sw=1;
+                    //                for(let j=0; j<newListProcente.length && sw; j++)
+                    //                    if(newProcent > item[j]["procent"]){
+                    //                        newListProcente.splice(j, 0, item[i]);
+                    //                        sw = 0;
+                    //                    }
+                    //                console.log(newListProcente);
+                    newListProcente.push(item[i]);
+                }
+                else {
+                    console.log("listString nu e definit");
+                }
+            }
+            newListProcente.sort(function (facultate_1, facultate_2) {
+                return facultate_2.procent - facultate_1.procent;
+            });
+            var index = 0;
+            _this.maxPercentage = newListProcente[0].procent;
+            while (index < 6) {
+                _this.facultatiSelectie.push(newListProcente[index]);
+                index += 1;
+            }
+            var lastPercent = newListProcente[5].procent;
+            while (newListProcente[index].procent === lastPercent) {
+                _this.facultatiSelectie.push(newListProcente[index]);
+                index += 1;
+            }
+        });
+        // for(let i=0; i<newListProcente.length-1; i+=1){
+        //     for(let j=i+1; j<newListProcente.length; j+=1){
+        //         if(newListProcente[i].procent < newListProcente[j].procent){
+        //             let aux = newListProcente[i];
+        //             newListProcente[i] = newListProcente[j];
+        //             newListProcente[j] = aux;
+        //         }
+        //     }
+        // }
+    };
     SelectiePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\selectie.html"*/'<ion-header style="background: transparent">\n\n    <ion-navbar transparent style="color:white">\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="selectie-content" padding>\n\n\n\n\n\n\n\n\n\n    <ion-list>\n\n        <ion-card class="tab" *ngFor="let item of facultatiSelectie">\n\n\n\n            <img src="{{item.imagine}}" />\n\n            <ion-card-content>\n\n                <ion-card-title>\n\n                    {{item.nume}}\n\n                </ion-card-title>\n\n                <p>\n\n                    {{item.universitate}}\n\n                </p>\n\n                <p>\n\n                    {{item.oras}}\n\n                </p>\n\n            </ion-card-content>\n\n\n\n        </ion-card>\n\n\n\n\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\pages\home\selectie.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\selectie.html"*/'<ion-header no-border style="background: transparent">\n\n    <ion-navbar transparent style="color:white">\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="selectie-content" padding>\n\n\n\n    <ion-list>\n\n        <ion-card class="tab" *ngFor="let item of facultatiSelectie">\n\n\n\n            <img src="{{item.imagine}}" />\n\n            <ion-card-content>\n\n                <ion-card-title>\n\n                    {{item.nume}}\n\n                </ion-card-title>\n\n                <div class="card-details">\n\n                        <div>\n\n                            <p>\n\n                                {{item.universitate}}\n\n                            </p>\n\n                            <p>\n\n                                {{item.oras}}\n\n                            </p>\n\n                        </div>\n\n                        <div class="percentage-container"\n\n                        [ngClass]="item.procent === maxPercentage? \'color3\' : \'color1\'">\n\n                            <h3>Potrivire: </h3>\n\n                            <h1>{{item.procent}}%</h1>\n\n                        </div>\n\n                    </div>\n\n            </ion-card-content>\n\n\n\n        </ion-card>\n\n\n\n\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\selectie.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */]])
     ], SelectiePage);
@@ -712,13 +793,13 @@ var SelectiePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(406);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -726,28 +807,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 299:
+/***/ 406:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_search_search__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_search_facultate__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_chat__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_selectie__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(421);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angularfire2_database__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_firebase_service_firebase_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_search_search__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_search_facultate__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_contact_contact__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_chat__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_selectie__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_status_bar__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_splash_screen__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__(475);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angularfire2_database__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_angularfire2_database__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2__ = __webpack_require__(476);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_angularfire2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_firebase_service_firebase_service__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -798,8 +881,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_13__angular_http__["a" /* HttpModule */],
                 /** DATABASE INITIALIZE  **/
-                __WEBPACK_IMPORTED_MODULE_14_angularfire2_database__["b" /* AngularFireDatabaseModule */],
-                __WEBPACK_IMPORTED_MODULE_15_angularfire2__["a" /* AngularFireModule */].initializeApp(firebaseConfig),
+                __WEBPACK_IMPORTED_MODULE_14_angularfire2_database__["AngularFireDatabaseModule"],
+                __WEBPACK_IMPORTED_MODULE_15_angularfire2__["AngularFireModule"].initializeApp(firebaseConfig),
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: []
                 })
@@ -833,16 +916,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 341:
+/***/ 449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(268);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -868,7 +951,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\hackathon Hermes 2018\hackathonApp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"E:\hackathon Hermes 2018\hackathonApp\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -879,13 +962,14 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 58:
+/***/ 65:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -906,7 +990,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var FirebaseServiceProvider = /** @class */ (function () {
     function FirebaseServiceProvider(afd) {
         this.afd = afd;
-        console.log('Hello FirebaseServiceProvider Provider');
+        //console.log('Hello FirebaseServiceProvider Provider');
     }
     FirebaseServiceProvider.prototype.getUniversityName = function () {
         return this.afd.list('/Facultati');
@@ -920,7 +1004,7 @@ var FirebaseServiceProvider = /** @class */ (function () {
     };
     FirebaseServiceProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["AngularFireDatabase"]])
     ], FirebaseServiceProvider);
     return FirebaseServiceProvider;
 }());
@@ -929,5 +1013,5 @@ var FirebaseServiceProvider = /** @class */ (function () {
 
 /***/ })
 
-},[278]);
+},[285]);
 //# sourceMappingURL=main.js.map
