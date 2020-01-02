@@ -28158,7 +28158,7 @@ page-home .chat-bubble {
   overflow: auto;
 }
 
-page-home .list-md {
+page-home .list-md, page-home .list-ios {
   margin: 0;
 }
 
@@ -28195,6 +28195,27 @@ page-home .stanga {
 
 page-home .stanga .chat-text {
   color: #1b1b1b;
+}
+
+page-home .buton-chat {
+  width: 98%;
+  margin: 1em 1% 0.2em 1%;
+}
+
+page-home .container-butoane {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  margin: 2em 0 0.2em 0;
+}
+
+page-home .container-butoane button {
+  width: 30%;
 }
 
 page-home .selectie-content {
@@ -28239,6 +28260,10 @@ page-home .medium-gradient {
 
 page-home .percentage-container h3, page-home .percentage-container h1 {
   color: white;
+}
+
+page-home .mb-4 {
+  margin-bottom: 4em;
 }
 
 page-search {

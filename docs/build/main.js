@@ -325,10 +325,11 @@ var ChatPage = /** @class */ (function () {
         this.alertCtrl = alertCtrl;
         this.navCtrl = navCtrl;
         this.informatiiStudent = { nume: "Vlad", materii: ['Biologie', 'Religie'] };
+        this.afisareButonRaspuns = false;
         this.ListaValori = [0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.numeClient = "";
         this.mesajeChat = [{ expeditor: 'asistent', mesaj: "Salut!", intrebare: '' },
-            { expeditor: 'asistent', mesaj: "Eu sunt Popândăul și sunt aici să te ajut în alegerea facultății.", intrebare: '' },
+            { expeditor: 'asistent', mesaj: "Eu sunt UniAssistant și sunt aici pentru a te ajuta în alegerea facultății.", intrebare: '' },
             { expeditor: 'asistent', mesaj: "Cum te numești?", intrebare: '' },
             { expeditor: 'client', mesaj: "Nume", intrebare: "nume" },
             { expeditor: 'asistent', mesaj: "Încântat de cunoștință,. Hai să ne cunoaștem mai bine.", intrebare: '' },
@@ -380,16 +381,35 @@ var ChatPage = /** @class */ (function () {
         this.listaJudete = [{ "auto": "AB", "nume": "Alba" }, { "auto": "AR", "nume": "Arad" }, { "auto": "AG", "nume": "Argeş" }, { "auto": "BC", "nume": "Bacău" }, { "auto": "BH", "nume": "Bihor" }, { "auto": "BN", "nume": "Bistriţa-Năsăud" }, { "auto": "BT", "nume": "Botoşani" }, { "auto": "BR", "nume": "Brăila" }, { "auto": "BV", "nume": "Braşov" }, { "auto": "B", "nume": "Bucureşti" }, { "auto": "BZ", "nume": "Buzău" }, { "auto": "CL", "nume": "Călăraşi" }, { "auto": "CS", "nume": "Caraş-Severin" }, { "auto": "CJ", "nume": "Cluj" }, { "auto": "CT", "nume": "Constanţa" }, { "auto": "CV", "nume": "Covasna" }, { "auto": "DB", "nume": "Dâmboviţa" }, { "auto": "DJ", "nume": "Dolj" }, { "auto": "GL", "nume": "Galaţi" }, { "auto": "GR", "nume": "Giurgiu" }, { "auto": "GJ", "nume": "Gorj" }, { "auto": "HR", "nume": "Harghita" }, { "auto": "HD", "nume": "Hunedoara" }, { "auto": "IL", "nume": "Ialomiţa" }, { "auto": "IS", "nume": "Iaşi" }, { "auto": "IF", "nume": "Ilfov" }, { "auto": "MM", "nume": "Maramureş" }, { "auto": "MH", "nume": "Mehedinţi" }, { "auto": "MS", "nume": "Mureş" }, { "auto": "NT", "nume": "Neamţ" }, { "auto": "OT", "nume": "Olt" }, { "auto": "PH", "nume": "Prahova" }, { "auto": "SJ", "nume": "Sălaj" }, { "auto": "SM", "nume": "Satu Mare" }, { "auto": "SB", "nume": "Sibiu" }, { "auto": "SV", "nume": "Suceava" }, { "auto": "TR", "nume": "Teleorman" }, { "auto": "TM", "nume": "Timiş" }, { "auto": "TL", "nume": "Tulcea" }, { "auto": "VL", "nume": "Vâlcea" }, { "auto": "VS", "nume": "Vaslui" }, { "auto": "VN", "nume": "Vrancea" }];
         this.urmatoareaIntrebare();
     }
+    ChatPage.prototype.ngAfterViewChecked = function () {
+        this.container.scrollToBottom(500);
+    };
+    Object.defineProperty(ChatPage.prototype, "isRaspunsDaNu", {
+        get: function () {
+            var intrebareCurenta = this.mesajeChat[this.mesajCurent].intrebare;
+            var listaIntrebari = new Array('nume', 'materii', 'judet', '');
+            return listaIntrebari.find(function (i) { return i == intrebareCurenta; }) === undefined;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ChatPage.prototype.urmatoareaIntrebare = function () {
-        do {
-            var mesaj = this.mesajeChat[this.mesajCurent];
-            this.mesajeTrimise.push(mesaj);
-            this.mesajCurent++;
-        } while (this.mesajeChat[this.mesajCurent].expeditor == "asistent" && this.mesajeChat[this.mesajCurent].expeditor != "final");
-        if (this.mesajeChat[this.mesajCurent].expeditor == "final") {
-            this.incrementeazaMaterii();
-            this.goTo(this.ListaValori);
-        }
+        var _this = this;
+        this.afisareButonRaspuns = false;
+        var interval = setInterval(function () {
+            var mesaj = _this.mesajeChat[_this.mesajCurent];
+            _this.mesajeTrimise.push(mesaj);
+            _this.mesajCurent++;
+            if (_this.mesajeChat[_this.mesajCurent].expeditor != "asistent" || _this.mesajeChat[_this.mesajCurent].expeditor == "final") {
+                _this.afisareButonRaspuns = true;
+                clearInterval(interval);
+                if (_this.mesajeChat[_this.mesajCurent].expeditor == "final") {
+                    _this.afisareButonRaspuns = false;
+                    _this.incrementeazaMaterii();
+                    _this.goTo(_this.ListaValori);
+                }
+            }
+        }, 800);
     };
     ChatPage.prototype.raspunsDouaAlegeri = function (intrebare, index) {
         var _this = this;
@@ -595,12 +615,27 @@ var ChatPage = /** @class */ (function () {
             this.goTo(this.ListaValori);
         }
     };
+    ChatPage.prototype.raspundeDaNu = function (raspuns) {
+        if (raspuns == "Da") {
+            var intrebare_1 = this.mesajeChat[this.mesajCurent].intrebare;
+            var listaIntrebari = ['muzicala', 'verbala', 'existentiala', 'logica-matematica',
+                'vizuala', 'naturalista', 'corporal-kinestezica', 'interpersonala', 'intrapersonala'];
+            var index = listaIntrebari.findIndex(function (i) { return i == intrebare_1; });
+            index >= 0 ? this.ListaValori[index] += 1 : '';
+        }
+        this.mesajeChat[this.mesajCurent].mesaj = raspuns;
+        this.urmatoareaIntrebare();
+    };
     ChatPage.prototype.goTo = function (lista) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__selectie__["a" /* SelectiePage */], { lista: lista });
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('content'),
+        __metadata("design:type", Object)
+    ], ChatPage.prototype, "container", void 0);
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>Asistent</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="bg-chat">\n\n    <ion-list *ngFor="let mesaj of mesajeTrimise">\n\n        <div class="chat-bubble">\n\n            <div *ngIf="mesaj.expeditor == \'asistent\'" class="chat-bubble-container stanga">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n\n\n            <div *ngIf="mesaj.expeditor == \'client\'" class="chat-bubble-container dreapta">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n        </div>\n\n\n\n    </ion-list>\n\n    <button class="buton-chat" ion-button (click)="raspunde()">Raspunde</button>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/'<ion-header>\n\n    <ion-navbar color="nav_primary">\n\n        <ion-title>Asistent</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content #content class="bg-chat">\n\n    <ion-list class="messageList" [ngClass]="!afisareButonRaspuns ? \'mb-4\' : \'\'">\n\n        <div *ngFor="let mesaj of mesajeTrimise" class="chat-bubble">\n\n            <div *ngIf="mesaj.expeditor == \'asistent\'" class="chat-bubble-container stanga">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n\n\n            <div *ngIf="mesaj.expeditor == \'client\'" class="chat-bubble-container dreapta">\n\n                <p class="chat-text">{{mesaj.mesaj}}</p>\n\n            </div>\n\n        </div>\n\n    </ion-list>\n\n    <button *ngIf="!isRaspunsDaNu && afisareButonRaspuns" class="buton-chat" ion-button (click)="raspunde()">Raspunde</button>\n\n    <div class="container-butoane" *ngIf="isRaspunsDaNu && afisareButonRaspuns">\n\n        <button (click)="raspundeDaNu(\'Da\')" ion-button>Da</button>\n\n        <button (click)="raspundeDaNu(\'Nu\')" ion-button>Nu</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\Vlad\Desktop\UniFind hackathon 2018\hackathonApp\src\pages\home\chat.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]])
     ], ChatPage);
